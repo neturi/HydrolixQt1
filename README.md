@@ -1,7 +1,7 @@
 find the common values in two vectors
 ======================================
 
-There are two scenarios: For both we need to the common values in two vectors: A large, unsorted vector with over 1M integers, and a small, unsorted vector with no more than 100 integers.
+There are two scenarios: For both we need to find the common values. There are two vectors: A large, unsorted vector with over 1M integers, and a small, unsorted vector with no more than 100 integers.
 
 1) In the first scenario, let’s assume that the large vector will rarely change. Build a performance- optimized class which takes the large vector in its constructor, and a member function which takes a passed-in smaller vector and returns the common values.
 2 ) In the second scenario, let’s assume that both vectors are expected to be short-lived (i.e., looked up once and then immediately destroyed). Write an alternative function you would use to optimize performance in this case.
