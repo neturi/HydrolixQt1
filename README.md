@@ -7,7 +7,7 @@ There are two scenarios: For both we need to find the common values. There are t
 2 ) In the second scenario, let’s assume that both vectors are expected to be short-lived (i.e., looked up once and then immediately destroyed). Write an alternative function you would use to optimize performance in this case.
 Please include comments regarding alternative implementations and tradeoffs (i.e., why you chose a particular approach).
 
-There are two approaches that have been narrowed down after considering several approaches. Here is the brief outline of the considerations
+There are two approaches that have been narrowed down (3rd and 4th) after considering several approaches. Here is the brief outline of the considerations
 
 Brute force approach would have resulted in O (n * m) time complexity - Not considered
 
@@ -16,7 +16,7 @@ Brute force approach would have resulted in O (n * m) time complexity - Not cons
 3. FindCommonVals3 - unordered_map with count of value and occurrence gives a O(1) lookup then sorting on the small vector O (m log m) since its 100 numbers much less than N.
      Expected O(N + M + K log K) time, O(M) extra space, for smaller size M and output size K <= M; pathological hash collisions can worsen lookup time.
      unordered_map is simple, supports every int32 key, and needs no custom probing.reserve avoids growth-related rehashes, but distinct keys still allocate nodes.
-4. Best approach is A fixed-capacity hash table stores one {value, occurrenceCount} entry per distinct large-input value. All entries live in one contiguous vector;
+4. CommonValuesFinder -(Best approach) - A fixed-capacity hash table stores one {value, occurrenceCount} entry per distinct large-input value. All entries live in one contiguous vector;
       construction does not grow/rehash the table or allocate a node for each key. Queries leave the table unchanged, so one constructed finder serves many queries.
       Carefully construct the slot count with capacity, mask and discardedHashBits_(by shifting) after multiplier to calculate the slotIndex.
       Then use LINEAR PROBING (for both and insertion and lookup until the empty slot or zero occurrence is hit). Thus, the time complexity here with	Constructor is O(N) average time
